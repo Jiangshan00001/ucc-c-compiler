@@ -7,7 +7,11 @@ CPPFLAGS_BOOTSTRAP = \
 # -Wno-return-undef: reachability depends on libc's _Noreturn/__GNUC__
 CFLAGS_BOOTSTRAP = \
 		 -fshow-warning-option \
-		 -Wno-return-undef
+		 -Wno-return-undef \
+		 -m32 -static \
+		 -L${PWD}/lib \
+		 -nostartfiles ${PWD}/lib/crt.a \
+		 -nostdinc -I${PWD}/lib
 
 CC_STAGE1 = ${PWD}/src/ucc/ucc
 CC_STAGE2 = ${PWD}/bootstrap/stage2/src/ucc/ucc
