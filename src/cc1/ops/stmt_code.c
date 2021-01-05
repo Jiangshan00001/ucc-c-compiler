@@ -620,7 +620,7 @@ void style_stmt_code(const stmt *s, out_ctx *octx)
 	stylef("\n}\n");
 }
 
-static int code_passable(stmt *s)
+static int code_passable(stmt *s, int break_means_passable)
 {
 	stmt **i;
 
@@ -628,7 +628,7 @@ static int code_passable(stmt *s)
 
 	for(i = s->bits.code.stmts; i && *i; i++){
 		stmt *sub = *i;
-		if(!fold_passable(sub))
+		if(!fold_passable(sub, break_means_passable))
 			return 0;
 	}
 
